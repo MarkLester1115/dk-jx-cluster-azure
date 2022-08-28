@@ -1,0 +1,41 @@
+apiVersion: core.jenkins-x.io/v4beta1
+kind: Requirements
+spec:
+  autoUpdate:
+    enabled: false
+    schedule: ""
+  cluster:
+    azure:
+      storage:
+        storageAccountName: jxfancygibbon
+    chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
+    environmentGitOwner: devkinetics
+    gitKind: github
+    gitName: github
+    gitServer: https://github.com
+    provider: aks
+    registry: fancygibbon.azurecr.io
+  environments:
+  - key: dev
+    owner: devkinetics
+    repository: dk-jx-cluster-azure
+  - key: staging
+  - key: production
+  ingress:
+    domain: 20.124.128.250.nip.io
+    kind: ingress
+    namespaceSubDomain: -jx.
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  pipelineUser:
+    username: markomanboi
+  repository: nexus
+  secretStorage: vault
+  storage:
+  - name: logs
+    url: azblob://logs
+  terraformVault: true
+  vault: {}
+  webhook: lighthouse
